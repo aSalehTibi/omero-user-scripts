@@ -1,0 +1,149 @@
+ImageJ Analysis
+-=-=-=-=-=-=-=-
+
+ImageJ analysis is performed using the GDSC plugins for ImageJ. ImageJ and the 
+plugins must be installed on the OMERO server that runs the scripts. The 
+following sections describe the install requirements.
+
+
+ImageJ
+------
+
+ImageJ can be obtained from the ImageJ website:
+
+http://rsbweb.nih.gov/ij/index.html
+
+The scripts have been tested with v1.45+. Newer versions should be supported.
+
+ImageJ can be installed to any location that is visible by the OMERO server.
+
+
+GDSC ImageJ plugins
+-------------------
+
+ImageJ analysis is performed using the GDSC plugins for ImageJ. These
+can be obtained from the GDSC ImageJ plugins website: 
+
+http://www.sussex.ac.uk/gdsc/intranet/microscopy/imagej/gdsc_plugins
+
+The plugins are written to output the results as text which is captured by the 
+OMERO scripts in a file. The results are then parsed and uploaded to OMERO or 
+e-mailed to the user.
+
+The GDSC ImageJ plugins should be placed into the 'plugins' folder of the ImageJ 
+install.
+
+
+Java Headless mode (Unix only)
+------------------------------
+
+ImageJ is run by the scripts using the ImageJ batch mode. This assumes a 
+headless Java environment (i.e. no graphical output). In this mode ImageJ is 
+purely an image analysis program with no user interaction. Unfortunately 
+on the Unix-derived operating system the headless mode still requires a graphics 
+device when using some of the core libraries. To allow ImageJ to run on an 
+OMERO server without a configured graphical output various ImageJ classes 
+have been rewritten to not use the core Java libraries. Only the classes used
+by the GDSC plugins have been changed.
+
+The headless.jar with source code is available in the GitHub repository 
+containing all the GDSC OMERO scripts. Feel free to modify and distribute this
+code.
+
+The headless.jar can be installed to any location that is visible by the OMERO 
+server.
+
+
+OMERO scripts
+-------------
+
+The install locations for ImageJ can be configured using variables at the top
+of the scripts:
+
+- Correlation_Analyser.py
+- Colocalisation_Analyser.py
+
+* IMAGEJ_CLASSPATH
+
+The ImageJ classpath must contain the full path to ij.jar. If using a Unix
+operating system the classpath must contain the full path to the headless.jar
+before the ij.jar (separated using :).
+
+Default: "/usr/local/ImageJ/headless.jar:/usr/local/ImageJ/ij.jar"
+
+* IMAGEJ_PATH
+
+The location of the ImageJ install (v1.45+). The [ImageJ]/plugins directory 
+must contain the gdsc_.jar ImageJ plugin.
+
+Default: "/usr/local/ImageJ"
+
+* ADMIN_EMAIL 
+
+The e-mail address that messages are sent from. Make this a valid address so 
+that the user can reply to the message.
+
+Default: 'admin@omero.host.com'
+
+
+SMTP setup
+----------
+
+The OMERO script have the ability to e-mail results to the user. This is done
+using the Python modules smtplib and email. The e-mails are sent using the 
+module defaults, i.e. using a server URL of localhost at port 25. If the host 
+machine running OMERO has an alternative SMTP configuration then please 
+consult the system administrator for SMTP set-up details. The OMERO scripts
+will have to be updated to use the alternative SMTP server.
+
+
+Command-line execution
+----------------------
+
+The scripts have been written to allow exceution outside of the OMERO scripting
+environment. The scripts will require the OMERO environment is set-up in the 
+host shell. Details of the required OMERO environment variables can be found 
+here:
+
+http://www.openmicroscopy.org/site/support/omero4/sysadmins/unix/server-installation.html
+
+The key is to include the OMERO python libraries on the PYTHONPATH otherwise
+the script will not be able to import the OMERO python modules. The ICE_CONFIG
+variable can be used to specify the OMERO host. An example configuration for
+the C-shell (csh) on a UNIX platform is show below:
+
+---
+setenv OMERO_HOME /usr/local/omero_dist
+setenv ICE_HOME /opt/Ice-3.3.1
+
+# Need ICE_HOME python stuff for python scripting API
+setenv PYTHONPATH /usr/lib/pymodules/python2.6:${ICE_HOME}/python/:${OMERO_HOME}/lib/python:${PYTHONPATH}
+
+# Used to set the config file for ICE properties.
+setenv ICE_CONFIG /home/omero/ice_config
+---
+
+The ice_config file contains the OMERO host:
+
+omero.host=localhost
+
+If the environment is correctly configured the scripts can be called from a 
+command-line passing the argument 'run':
+
+% ./Colocalisation_Analyser.py run
+
+The script will prompt the user to enter the OMERO connection details (user,
+password, server and port). The script then runs using hard-coded parameter 
+configuration (which can be changed to suit the testing protocol). The command-
+line run-mode provides an example of running image analysis using images stored 
+in OMERO. It also provides a method to debug the scripts before deployment to 
+the server.
+
+
+Contact
+-=-=-=-
+
+For further details of the GDSC scripts please contact:
+
+Alex Herbert
+a.herbert@sussex.ac.uk

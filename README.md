@@ -95,7 +95,7 @@ It will be used to help generate a landing page and links for your work.
 Please modify **all** values on **each** branch to describe your scripts.
 
 ###### Repository name ######
-Base OMERO User Scripts repository
+GDSC OMERO User Scripts repository
 
 ###### Minimum version ######
 4.4
@@ -104,17 +104,30 @@ Base OMERO User Scripts repository
 5.0
 
 ###### Owner(s) ######
-The OME Team
+Alex Herbert
 
 ###### Institution ######
-Open Microscopy Environment
+Genome Damage and Stability Centre, University of Sussex
 
 ###### URL ######
-http://openmicroscopy.org/info/scripts
+http://www.sussex.ac.uk/gdsc/intranet/microscopy/omero/scripts
 
 ###### Email ######
-ome-devel@lists.openmicroscopy.org.uk
+a.herbert@sussex.ac.uk
 
 ###### Description ######
-Example script repository to be cloned, modified, and extended.
-This text may be used on OME resources to explain your scripts.
+Example script repository to be cloned, modified, and extended. 
+
+The scripts contain examples of utility scripts and image analysis using ImageJ.
+
+The following scripts are available:
+- Check Images : Check the final frame of an image contains pixel data. Used to 
+validate data import completed
+- New Images From ROIs : Allows cropping an image, optionally through the z/t 
+stack, using ROIs
+- Image Size : Produce a report showing the size of images including archives
+- Correlation Analyser : Produces a report of an all-vs-all channel correlation
+- Coloclisation Analyser : Uses the Confined Displacement Algorithm (CDA) to 
+determine if the correlation between two channels is significant. This is done
+by comparison with random images created by shifting the pixels within a 
+confined region
