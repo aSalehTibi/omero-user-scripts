@@ -5,12 +5,12 @@ This checks the last frame in the image for a blank frame. Blank frames
 indicate an OMERO import failure.
 """
 
+import sys
 import locale
 try:
     locale.setlocale(locale.LC_ALL, 'en_GB')
 except:
     pass
-import sys
 
 import omero
 import omero.scripts as scripts
