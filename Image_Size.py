@@ -6,7 +6,10 @@ This produces a report of the raw byte size for each selected image.
 
 import sys
 import locale
-locale.setlocale(locale.LC_ALL, 'en_GB.UTF8')
+try:
+    locale.setlocale(locale.LC_ALL, 'en_GB')
+except:
+    pass
 
 import omero
 import omero.scripts as scripts

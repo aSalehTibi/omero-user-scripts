@@ -6,7 +6,10 @@ indicate an OMERO import failure.
 """
 
 import locale
-locale.setlocale(locale.LC_ALL, 'en_GB.UTF8')
+try:
+    locale.setlocale(locale.LC_ALL, 'en_GB')
+except:
+    pass
 import sys
 
 import omero

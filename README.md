@@ -17,6 +17,15 @@ Installation
 
         path/to/bin/omero script list
 
+4. The ImageJ analysis scripts require additional configuration. The scripts
+   need to know where to locate the ImageJ program and ImageJ must have the
+   correct plugins installed. 
+
+   Additional steps for headless execution of ImageJ on UNIX platforms are
+   also required.
+
+   Further details are available in the [INSTALL](INSTALL) file.
+
 Upgrading
 ---------
 
