@@ -55,6 +55,9 @@ Developer Installation
 
         git clone git@github.com:YOURGITUSER/omero-user-scripts.git YOUR_SCRIPTS
 
+4. The ImageJ analysis scripts require additional configuration. Further details 
+   are available in the [INSTALL](INSTALL) file.
+
 Adding a script
 ---------------
 
