@@ -8,9 +8,9 @@ Installation
 
         cd OMERO_DIST/lib/scripts
 
-2. Clone the repository with a unique name (e.g. "useful_scripts")
+2. Clone the repository with a unique name (e.g. "gdsc")
 
-        git clone https://github.com/THISREPOSITORY/omero-user-scripts.git UNIQUE_NAME
+        git clone https://github.com/aherbert/omero-user-scripts.git gdsc
 
 3. Update your list of installed scripts by examining the list of scripts
    in OMERO.insight or OMERO.web, or by running the following command
