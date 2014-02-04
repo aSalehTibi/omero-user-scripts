@@ -178,7 +178,7 @@ def create_result_name(params):
     name.append('Ch%s' % params[PARAM_CHANNEL2])
     if params[PARAM_CHANNEL3]:
         name.append('Ch%s' % params[PARAM_CHANNEL3])
-    return '_'.join(name) + '.txt'
+    return '_'.join(name) + '.csv'
     
 def upload_results(conn, results, params):
     """

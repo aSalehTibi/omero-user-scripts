@@ -169,7 +169,7 @@ def create_result_name(params):
         name.append("Intersect")
     if params[PARAM_AGGREGATE_STACK]:
         name.append("Aggregate")
-    return '_'.join(name) + '.txt'
+    return '_'.join(name) + '.csv'
     
 def upload_results(conn, results, params):
     """
